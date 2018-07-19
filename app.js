@@ -1,4 +1,8 @@
-$('.product__area').html(data.map(item => template(item)).join(''));
+'use strict';
+
+$('.product__area').html(data.map(function (item) {
+    return template(item);
+}).join(''));
 
 $(document).ready(function () {
     $('.stepper-arrow.down').click(function () {
@@ -21,15 +25,7 @@ $(document).ready(function () {
 
         $(this).parent().find('.unit--select').removeClass('unit--active');
         $(this).closest('.product').find('.product-price').hide();
-        var targetPrice =
-        $(this)
-            .closest('.product')
-            .find('.product-price' + '.product-price_unit_' + $(this)
-            .data('unit'))
-            .show();
-        $(this)
-            .parent()
-            .find('.unit--select' + '.unit--select_unit_' + $(this).data('unit'))
-            .addClass('unit--active');
+        var targetPrice = $(this).closest('.product').find('.product-price' + '.product-price_unit_' + $(this).data('unit')).show();
+        $(this).parent().find('.unit--select' + '.unit--select_unit_' + $(this).data('unit')).addClass('unit--active');
     });
 });
